@@ -52,52 +52,45 @@ table td{padding:10px 8px;border-bottom:1px solid #f5ece4;}
 .booking-item strong{color:var(--gold-dark);}
 textarea#booksyEmbedCode{min-height:110px;font-family:monospace;font-size:12.5px;}
 .remove-btn{background:none;border:none;color:var(--danger);cursor:pointer;font-size:18px;}
+</style>
 
+<style>
 @media (max-width: 760px) {
   html, body { overflow-x: hidden !important; }
-  .app { grid-template-columns: 1fr !important; }
+  .app { display: block !important; }
   .sidebar {
     width: 100% !important;
     min-height: auto !important;
-    padding: 20px 14px !important;
+    padding: 16px 14px !important;
   }
-  .content {
-    width: 100% !important;
-    min-width: 0 !important;
-    padding: 18px 14px !important;
+  .sidebar .nav-links, .sidebar nav, .sidebar ul {
+    display: none;
   }
-  .content-header {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 12px !important;
+  .sidebar.is-open .nav-links, .sidebar.is-open nav, .sidebar.is-open ul {
+    display: block !important;
   }
-  .content-header h2 { font-size: 24px !important; }
+  .content { width: 100% !important; padding: 16px 14px !important; }
+  .content-header { display:flex !important; flex-direction:column !important; align-items:flex-start !important; gap:12px !important; }
+  .content-header h2 { font-size: 22px !important; }
   .save-btn { padding: 10px 14px !important; font-size: 13px !important; }
-  .save-status { max-width: 100% !important; font-size: 13px !important; }
-  .section-card { padding: 18px 16px !important; }
-  .section-card h3 { font-size: 18px !important; }
-  .section-card p, .section-card li, label { font-size: 13px !important; }
-  .form-row, .form-row3, .grid-2, .grid-3 { grid-template-columns: 1fr !important; }
-  input, textarea, select {
-    width: 100% !important;
-    min-width: 0 !important;
-    font-size: 13px !important;
-    padding: 10px 12px !important;
+  .menu-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: 1px solid currentColor;
+    background: transparent;
+    margin-top: 12px;
   }
-  table { display: block !important; overflow-x: auto !important; width: 100% !important; }
+  .section-card { padding: 16px !important; }
+  .form-row, .form-row3, .grid-2, .grid-3 { display:grid !important; grid-template-columns:1fr !important; gap:12px !important; }
+  input, textarea, select { width:100% !important; min-width:0 !important; font-size:13px !important; padding:10px 12px !important; }
 }
-@media (max-width: 480px) {
-  .brand { font-size: 16px !important; }
-  .brand small { font-size: 11px !important; }
-  .menu-btn { font-size: 12.5px !important; padding: 10px 11px !important; }
-  .content { padding: 16px 12px !important; }
-  .content-header h2 { font-size: 21px !important; }
-  .section-card { padding: 16px 14px !important; }
-  .section-card h3 { font-size: 17px !important; }
-  input, textarea, select { font-size: 12.5px !important; }
+@media (min-width: 761px) {
+  .menu-toggle { display:none !important; }
 }
-
 </style>
 </head>
 <body>
@@ -610,6 +603,23 @@ if(authToken){
   document.getElementById('appLayout').style.display='flex';
   init();
 }
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sidebar = document.querySelector('.sidebar');
+  if (!sidebar) return;
+  const btn = document.createElement('button');
+  btn.className = 'menu-toggle';
+  btn.type = 'button';
+  btn.setAttribute('aria-label', 'Показать или скрыть меню');
+  btn.innerHTML = '☰';
+  sidebar.insertBefore(btn, sidebar.firstChild);
+  btn.addEventListener('click', () => {
+    sidebar.classList.toggle('is-open');
+    btn.innerHTML = sidebar.classList.contains('is-open') ? '✕' : '☰';
+  });
+});
 </script>
 </body>
 </html>
