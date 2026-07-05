@@ -56,52 +56,47 @@ textarea#booksyEmbedCode{min-height:110px;font-family:monospace;font-size:12.5px
 
 <style>
 @media (max-width: 760px) {
-  .be-mobile-shell { display: flex !important; flex-direction: column !important; }
-  .be-mobile-topbar {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    display: flex !important;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 12px 14px;
-    background: inherit;
-    backdrop-filter: blur(10px);
+  html, body { overflow-x: hidden !important; }
+  body { padding-top: 0 !important; }
+  .sidebar, .left-sidebar, .admin-sidebar, aside {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 40 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
   }
-  .be-mobile-brand { display: flex; flex-direction: column; gap: 2px; }
-  .be-mobile-brand h1 { margin: 0; font-size: 18px !important; line-height: 1.1; }
-  .be-mobile-brand p { margin: 0; font-size: 12px !important; opacity: .75; }
-  .be-mobile-toggle {
-    width: 42px; height: 42px; border-radius: 12px; border: 1px solid currentColor;
-    display: inline-flex; align-items: center; justify-content: center; background: transparent;
-    flex: 0 0 auto;
+  .content, .main, .admin-content, main {
+    width: 100% !important;
+    padding: 14px !important;
+    min-width: 0 !important;
   }
-  .be-mobile-sidebar {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height .25s ease;
-    border-top: 1px solid rgba(255,255,255,.08);
+  .menu-toggle-mobile {
+    display: inline-flex !important;
+    align-items: center; justify-content: center;
+    width: 42px; height: 42px; border-radius: 12px;
+    border: 1px solid currentColor; background: transparent;
+    margin: 12px 0 0 14px;
   }
-  .be-mobile-sidebar.is-open { max-height: 520px; }
-  .be-mobile-sidebar .menu, .be-mobile-sidebar nav, .be-mobile-sidebar ul {
-    display: grid !important;
-    gap: 8px;
-    padding: 12px 14px 14px;
-    margin: 0;
-  }
-  .be-mobile-sidebar a, .be-mobile-sidebar button {
-    width: 100%;
+  .mobile-sidebar-title { display:flex !important; align-items:baseline; gap:10px; padding: 14px 14px 10px; }
+  .mobile-sidebar-title h1 { margin:0; font-size: 18px !important; }
+  .mobile-sidebar-title p { margin:0; font-size: 12px !important; opacity:.7; }
+  .mobile-sidebar-menu { max-height: 0; overflow: hidden; transition: max-height .25s ease; }
+  .mobile-sidebar-menu.is-open { max-height: 600px; }
+  .mobile-sidebar-menu a, .mobile-sidebar-menu button {
+    display:block; width: calc(100% - 28px);
+    margin: 8px 14px; padding: 12px 14px !important; border-radius: 14px;
     text-align: left;
-    padding: 12px 14px !important;
-    border-radius: 14px;
   }
-  .be-mobile-content { padding: 14px !important; }
-  .content-header { margin-top: 8px; }
+  .content-header { display:flex !important; flex-direction:column !important; gap: 12px !important; }
+  .content-header h2 { font-size: 20px !important; }
+  .form-row, .form-row3, .grid-2, .grid-3 { display:grid !important; grid-template-columns:1fr !important; gap: 12px !important; }
+  input, textarea, select { width:100% !important; min-width:0 !important; font-size: 13px !important; }
 }
 @media (min-width: 761px) {
-  .be-mobile-topbar, .be-mobile-toggle { display: none !important; }
-  .be-mobile-sidebar { max-height: none !important; overflow: visible !important; }
+  .menu-toggle-mobile { display:none !important; }
+  .mobile-sidebar-menu { max-height:none !important; overflow:visible !important; }
 }
 </style>
 </head>
@@ -619,14 +614,28 @@ if(authToken){
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const shell = document.querySelector('.be-mobile-shell');
-  const sidebar = document.querySelector('.be-mobile-sidebar');
-  const toggle = document.querySelector('.be-mobile-toggle');
-  if (!shell || !sidebar || !toggle) return;
-  toggle.addEventListener('click', () => {
-    sidebar.classList.toggle('is-open');
-    toggle.textContent = sidebar.classList.contains('is-open') ? '✕' : '☰';
+  const sidebar = document.querySelector('aside, .sidebar, .left-sidebar, .admin-sidebar');
+  if (!sidebar) return;
+  const menu = sidebar.querySelector('nav, ul, .menu, .nav-links') || sidebar;
+  const title = document.createElement('div');
+  title.className = 'mobile-sidebar-title';
+  title.innerHTML = '<div><h1>Beauty Euphoria</h1><p>Panel admina</p></div>';
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'menu-toggle-mobile';
+  btn.textContent = '☰';
+  sidebar.insertBefore(btn, sidebar.firstChild);
+  sidebar.insertBefore(title, btn.nextSibling);
+  menu.classList.add('mobile-sidebar-menu');
+  const refresh = () => {
+    if (window.innerWidth > 760) { menu.classList.remove('is-open'); btn.textContent = '☰'; }
+  };
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('is-open');
+    btn.textContent = menu.classList.contains('is-open') ? '✕' : '☰';
   });
+  window.addEventListener('resize', refresh);
+  refresh();
 });
 </script>
 </body>
