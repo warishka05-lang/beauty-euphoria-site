@@ -216,25 +216,26 @@ footer{background:#2f2621;color:#e8ddd4;padding:60px 0 24px;}
 </style>
 
 <style>
-@media (max-width: 760px) {
-  .topbar, header, .navbar, .site-header {
-    min-height: 56px !important;
-    height: auto !important;
-    padding-top: 8px !important;
-    padding-bottom: 8px !important;
-  }
-  .topbar::before, header::before, .navbar::before, .site-header::before {
-    display: none !important;
-  }
-  .topbar, header, .navbar, .site-header {
-    background: rgba(255,255,255,.96) !important;
-    backdrop-filter: blur(8px);
-  }
-  .topbar .button, .topbar .btn, header .button, header .btn, .navbar .button, .navbar .btn, .site-header .button, .site-header .btn {
-    transform: scale(.92);
-    transform-origin: center;
-  }
-  .hero, .hero-section { margin-top: 0 !important; }
+html, body { overflow-x: hidden !important; }
+header + *, .site-header + *, .navbar + *, .topbar + * {
+  transform: translateY(-120%) !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+header.menu-open + *, .site-header.menu-open + *, .navbar.menu-open + *, .topbar.menu-open + *,
+header[aria-expanded="true"] + *, .site-header[aria-expanded="true"] + *, .navbar[aria-expanded="true"] + *, .topbar[aria-expanded="true"] + *,
+body.menu-open header + *, body.menu-open .site-header + *, body.menu-open .navbar + *, body.menu-open .topbar + *,
+body.nav-open header + *, body.nav-open .site-header + *, body.nav-open .navbar + *, body.nav-open .topbar + * {
+  transform: translateY(0) !important;
+  max-height: 80vh !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  overflow: auto !important;
 }
 </style>
 </head>
