@@ -214,6 +214,20 @@ footer{background:#2f2621;color:#e8ddd4;padding:60px 0 24px;}
   .section{padding:60px 0;}
 }
 </style>
+
+<style>
+@media (max-width: 760px) {
+  .hero-image, .hero-media, .hero-visual, .hero-card { min-height: 260px !important; }
+  .hero-image img, .hero-media img, .hero-visual img { height: auto !important; max-height: 320px !important; object-fit: cover !important; }
+  .hero-image .placeholder, .hero-image .placeholder-text, .hero-media .placeholder, .hero-visual .placeholder {
+    min-height: 260px !important;
+    padding: 24px !important;
+  }
+  .hero, .hero-section { padding-bottom: 24px !important; }
+  .header, .navbar, .topbar { padding-bottom: 10px !important; }
+  .menu-toggle, .nav-toggle { width: 44px !important; height: 44px !important; }
+}
+</style>
 </head>
 <body>
 
