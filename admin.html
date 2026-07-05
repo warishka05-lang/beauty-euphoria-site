@@ -52,102 +52,25 @@ table td{padding:10px 8px;border-bottom:1px solid #f5ece4;}
 .booking-item strong{color:var(--gold-dark);}
 textarea#booksyEmbedCode{min-height:110px;font-family:monospace;font-size:12.5px;}
 .remove-btn{background:none;border:none;color:var(--danger);cursor:pointer;font-size:18px;}
+</style>
 
-@media (max-width: 900px) {
-  body { overflow-x: hidden; }
-  .sidebar { width: 240px; padding: 28px 18px; }
-  .brand { font-size: 18px; }
-  .brand small { font-size: 12px; }
-  .menu-btn { font-size: 14px; padding: 12px 14px; }
-  .content { padding: 28px 24px; }
-  .content-header { margin-bottom: 20px; }
-  .content-header h2 { font-size: 34px; }
-  .save-btn { padding: 12px 16px; font-size: 14px; }
-  .save-status { max-width: 240px; font-size: 13px; padding: 14px 16px; }
-  .section-card { padding: 24px 20px; border-radius: 22px; }
-  .section-card h3 { font-size: 30px; margin-bottom: 14px; }
-  .section-card p, .section-card li, label { font-size: 14px; }
-  .grid-2, .grid-3, .form-row, .form-row3 { gap: 14px; }
-  input, textarea, select { font-size: 14px; padding: 12px 14px; }
-  .team-item, .service-item, .portfolio-item, .review-item { padding: 16px; }
-}
-@media (max-width: 700px) {
-  .app { display: block !important; }
-  .sidebar {
-    width: 100% !important;
-    min-height: auto !important;
-    position: relative !important;
-    padding: 18px 14px !important;
-  }
-  .content {
-    width: 100% !important;
-    padding: 18px 14px !important;
-  }
-  .content-header {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 12px !important;
-  }
-  .content-header h2 { font-size: 24px !important; }
-  .save-btn {
-    width: auto !important;
-    align-self: flex-start !important;
-    padding: 10px 14px !important;
-    font-size: 13px !important;
-    border-radius: 999px !important;
-  }
-  .save-status {
-    max-width: 100% !important;
-    font-size: 13px !important;
-    line-height: 1.5 !important;
-    padding: 14px !important;
-  }
-  .section-card {
-    padding: 18px 16px !important;
-    border-radius: 18px !important;
-  }
-  .section-card h3 { font-size: 18px !important; line-height: 1.2 !important; }
-  .section-card p, .section-card li, label { font-size: 13px !important; line-height: 1.5 !important; }
-  .grid-2, .grid-3, .form-row, .form-row3 {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
-  }
-  input, textarea, select {
-    width: 100% !important;
-    font-size: 13px !important;
-    padding: 10px 12px !important;
-  }
-  .menu-btn {
-    font-size: 13px !important;
-    padding: 11px 12px !important;
-    border-radius: 14px !important;
-  }
-  .team-item, .service-item, .portfolio-item, .review-item {
-    padding: 14px !important;
-  }
-  table {
+<style>
+@media (max-width: 760px) {
+  .be-admin-toggle { display:inline-flex !important; }
+  .be-admin-sidebar-wrap { position: relative; }
+  .be-admin-sidebar {
     display: block !important;
-    overflow-x: auto !important;
     width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    overflow: hidden !important;
   }
+  .be-admin-sidebar.is-collapsed .be-admin-sidebar-menu { display: none !important; }
+  .be-admin-sidebar-menu { display: block; }
+  .be-admin-content { width: 100% !important; max-width: 100% !important; }
+  .be-admin-header { display:flex !important; align-items:center !important; justify-content:space-between !important; gap:12px !important; flex-wrap:wrap !important; }
+  .be-admin-title { font-size: 20px !important; }
 }
-@media (max-width: 480px) {
-  .sidebar { padding: 16px 12px !important; }
-  .brand { font-size: 16px !important; }
-  .brand small { font-size: 11px !important; }
-  .content { padding: 16px 12px !important; }
-  .content-header h2 { font-size: 22px !important; }
-  .save-btn { font-size: 12px !important; padding: 9px 12px !important; }
-  .save-status { font-size: 12px !important; padding: 12px !important; }
-  .section-card { padding: 16px 14px !important; }
-  .section-card h3 { font-size: 17px !important; }
-  .section-card p, .section-card li, label { font-size: 12.5px !important; }
-  input, textarea, select { font-size: 12.5px !important; padding: 9px 11px !important; }
-  .menu-btn { font-size: 12.5px !important; padding: 10px 11px !important; }
-}
-
 </style>
 </head>
 <body>
@@ -660,6 +583,25 @@ if(authToken){
   document.getElementById('appLayout').style.display='flex';
   init();
 }
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sidebar = document.querySelector('[data-admin-sidebar]');
+  const header = document.querySelector('[data-admin-header]');
+  if (!sidebar || !header) return;
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'be-admin-toggle';
+  btn.textContent = '☰';
+  btn.style.cssText = 'display:none;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid currentColor;border-radius:12px;background:transparent;';
+  header.insertBefore(btn, header.firstChild);
+  const menu = sidebar.querySelector('[data-admin-menu]') || sidebar;
+  const set = () => { const mobile = window.innerWidth <= 760; btn.style.display = mobile ? 'inline-flex' : 'none'; if (!mobile) sidebar.classList.remove('is-collapsed'); };
+  btn.addEventListener('click', () => { sidebar.classList.toggle('is-collapsed'); btn.textContent = sidebar.classList.contains('is-collapsed') ? '☰' : '✕'; });
+  window.addEventListener('resize', set);
+  set();
+});
 </script>
 </body>
 </html>
