@@ -217,15 +217,24 @@ footer{background:#2f2621;color:#e8ddd4;padding:60px 0 24px;}
 
 <style>
 @media (max-width: 760px) {
-  .hero-image, .hero-media, .hero-visual, .hero-card { min-height: 260px !important; }
-  .hero-image img, .hero-media img, .hero-visual img { height: auto !important; max-height: 320px !important; object-fit: cover !important; }
-  .hero-image .placeholder, .hero-image .placeholder-text, .hero-media .placeholder, .hero-visual .placeholder {
-    min-height: 260px !important;
-    padding: 24px !important;
+  .topbar, header, .navbar, .site-header {
+    min-height: 56px !important;
+    height: auto !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
   }
-  .hero, .hero-section { padding-bottom: 24px !important; }
-  .header, .navbar, .topbar { padding-bottom: 10px !important; }
-  .menu-toggle, .nav-toggle { width: 44px !important; height: 44px !important; }
+  .topbar::before, header::before, .navbar::before, .site-header::before {
+    display: none !important;
+  }
+  .topbar, header, .navbar, .site-header {
+    background: rgba(255,255,255,.96) !important;
+    backdrop-filter: blur(8px);
+  }
+  .topbar .button, .topbar .btn, header .button, header .btn, .navbar .button, .navbar .btn, .site-header .button, .site-header .btn {
+    transform: scale(.92);
+    transform-origin: center;
+  }
+  .hero, .hero-section { margin-top: 0 !important; }
 }
 </style>
 </head>
