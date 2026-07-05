@@ -53,26 +53,70 @@ table td{padding:10px 8px;border-bottom:1px solid #f5ece4;}
 textarea#booksyEmbedCode{min-height:110px;font-family:monospace;font-size:12.5px;}
 .remove-btn{background:none;border:none;color:var(--danger);cursor:pointer;font-size:18px;}
 
-@media(max-width:768px){
-  body{font-size:13px;}
-  .container,.wrap{padding-left:14px !important;padding-right:14px !important;}
-  h1{font-size:24px !important;}
-  h2{font-size:20px !important;}
-  h3{font-size:17px !important;}
-  h4{font-size:15px !important;}
-  p,li,td,th,label{font-size:13px !important;}
-  input,select,textarea{font-size:13px !important;padding:10px 12px !important;}
-  button,.btn,a.button{font-size:13px !important;padding:10px 14px !important;}
-  .grid,.cards,.form-row,.form-row3{grid-template-columns:1fr !important;gap:12px !important;}
-  .panel,.card,.section-box{padding:16px !important;}
-  table{font-size:12px !important;display:block;overflow-x:auto;}
+@media (max-width: 900px) {
+  body { overflow-x: hidden; }
+  .admin-layout, .layout, .page, .app, .dashboard, .wrapper { display: block !important; }
+  aside, .sidebar, .side, .left-panel, .menu-panel {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    height: auto !important;
+    border-radius: 0 0 18px 18px !important;
+    padding: 18px 16px !important;
+  }
+  main, .main, .content, .content-area, .panel-content, .right-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 16px !important;
+  }
+  .tabs, .tab-buttons, nav ul, .menu-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  .tabs button, .tab-buttons button, .menu-list a, nav ul a {
+    width: 100% !important;
+    text-align: left !important;
+  }
+  .sticky, .sticky-save, .save-btn, .save-button {
+    position: static !important;
+    width: 100% !important;
+    margin: 12px 0 0 0 !important;
+  }
+  .form-row, .form-row3, .grid, .cards, .two-col, .three-col {
+    grid-template-columns: 1fr !important;
+    display: grid !important;
+    gap: 12px !important;
+  }
+  .card, .panel, .box, .section-box {
+    padding: 16px !important;
+    border-radius: 16px !important;
+    min-width: 0 !important;
+  }
+  input, select, textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  img { max-width: 100% !important; height: auto !important; }
 }
-@media(max-width:480px){
-  h1{font-size:21px !important;}
-  h2{font-size:18px !important;}
-  h3{font-size:16px !important;}
-  input,select,textarea{font-size:12.5px !important;}
-  button,.btn,a.button{font-size:12px !important;padding:9px 12px !important;}
+@media (max-width: 520px) {
+  body { font-size: 13px !important; }
+  h1 { font-size: 20px !important; line-height: 1.15 !important; }
+  h2 { font-size: 18px !important; }
+  h3 { font-size: 16px !important; }
+  p, li, label, td, th { font-size: 12.5px !important; }
+  .card, .panel, .box, .section-box { padding: 14px !important; }
+  button, .btn, a.button {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 10px 12px !important;
+    font-size: 12.5px !important;
+  }
+  table { display: block !important; overflow-x: auto !important; white-space: nowrap !important; }
 }
 
 </style>
