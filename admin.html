@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel administracyjny — Beauty Euphoria</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--powder:#f7e6e0;--beige:#f3ece2;--white:#fffaf7;--gold:#c9a15a;--gold-dark:#a9803f;--text:#4a3f3a;--text-light:#7d6f68;--radius:14px;--danger:#c0392b;--success:#1e7e46;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:var(--beige);color:var(--text);min-height:100vh;}
+h1,h2,h3{font-family:'Playfair Display',serif;}
+a{color:var(--gold-dark);text-decoration:none;}
+.layout{display:flex;min-height:100vh;}
+.sidebar{width:240px;background:#2f2621;color:#e8ddd4;padding:28px 20px;flex-shrink:0;}
+.sidebar h2{color:#fff;font-size:20px;margin-bottom:30px;}
+.sidebar nav a{display:block;padding:12px 14px;border-radius:10px;color:#c7bcb2;font-size:14px;margin-bottom:6px;cursor:pointer;}
+.sidebar nav a.active,.sidebar nav a:hover{background:rgba(201,161,90,.15);color:#fff;}
+.sidebar .back{margin-top:30px;display:block;font-size:13px;color:#8a7f76;}
+.main{flex:1;padding:36px 44px;overflow-y:auto;}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;}
+.topbar h1{font-size:26px;}
+.btn{display:inline-block;padding:11px 26px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;border:none;border-radius:50px;font-weight:500;font-size:14px;cursor:pointer;}
+.btn.secondary{background:transparent;border:1.5px solid var(--gold);color:var(--gold-dark);}
+.btn.danger{background:var(--danger);}
+.btn.small{padding:7px 16px;font-size:12.5px;}
+.card{background:#fff;border-radius:var(--radius);padding:26px;margin-bottom:24px;box-shadow:0 4px 20px rgba(0,0,0,.04);}
+.card h3{font-size:17px;margin-bottom:16px;}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;font-size:13px;color:var(--text-light);margin-bottom:6px;}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border:1px solid #eee0d5;border-radius:10px;font-family:inherit;font-size:14px;background:var(--white);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+table{width:100%;border-collapse:collapse;font-size:14px;}
+table th{text-align:left;color:var(--text-light);font-weight:500;font-size:12.5px;padding:8px;border-bottom:2px solid var(--beige);}
+table td{padding:10px 8px;border-bottom:1px solid #f5ece4;}
+.item-row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:10px;align-items:center;margin-bottom:10px;}
+.tag{display:inline-block;padding:3px 10px;border-radius:20px;background:var(--powder);font-size:11.5px;color:var(--gold-dark);}
+.section-hidden{display:none;}
+.alert{padding:14px 18px;border-radius:10px;margin-bottom:20px;font-size:14px;display:none;}
+.alert.success{background:#e9f7ef;color:var(--success);display:block;}
+.hint{font-size:12.5px;color:var(--text-light);margin-top:6px;line-height:1.5;}
+.hint b{color:var(--text);}
+.widget-status{display:flex;align-items:center;gap:10px;padding:14px 18px;border-radius:10px;margin-bottom:18px;font-size:14px;}
+.widget-status.active{background:#e9f7ef;color:var(--success);}
+.widget-status.inactive{background:#fdf1ec;color:#a9622f;}
+.dot{width:9px;height:9px;border-radius:50%;background:currentColor;}
+.step-guide{list-style:none;counter-reset:step;margin-top:14px;}
+.step-guide li{counter-increment:step;position:relative;padding-left:34px;margin-bottom:14px;font-size:13.5px;color:var(--text);}
+.step-guide li::before{content:counter(step);position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;}
+.booking-item{border:1px solid #f5ece4;border-radius:10px;padding:14px 18px;margin-bottom:10px;font-size:13.5px;}
+.booking-item strong{color:var(--gold-dark);}
+textarea#booksyEmbedCode{min-height:110px;font-family:monospace;font-size:12.5px;}
+.remove-btn{background:none;border:none;color:var(--danger);cursor:pointer;font-size:18px;}
+</style>
+</head>
+<body>
+<div id="loginScreen" style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--beige);">
+  <div class="card" style="max-width:360px;width:100%;">
+    <h3 style="margin-bottom:18px;">Logowanie do panelu</h3>
+    <div class="form-group"><label>Hasło administratora</label><input type="password" id="loginPassword"></div>
+    <div id="loginError" style="color:var(--danger);font-size:13px;margin-bottom:10px;display:none;">Nieprawidłowe hasło.</div>
+    <button class="btn" id="loginBtn" style="width:100%;">Zaloguj się</button>
+  </div>
+</div>
+<div class="layout" id="appLayout" style="display:none;">
+  <div class="sidebar">
+    <h2>Beauty Euphoria<br><span style="font-size:13px;color:#8a7f76;">Panel admina</span></h2>
+    <nav>
+      <a data-tab="tab-widget" class="active">🔗 Rezerwacja (Booksy)</a>
+      <a data-tab="tab-salon">🏠 Dane salonu</a>
+      <a data-tab="tab-team">👩 Pracownicy</a>
+      <a data-tab="tab-services">💅 Usługi i cennik</a>
+      <a data-tab="tab-portfolio">🖼️ Portfolio</a>
+      <a data-tab="tab-reviews">⭐ Opinie</a>
+      <a data-tab="tab-bookings">📩 Zgłoszenia z formularza</a>
+    </nav>
+    <a class="back" href="index.html">← Powrót do strony</a>
+  </div>
+
+  <div class="main">
+    <div class="topbar">
+      <h1 id="pageTitle">Rezerwacja online (Booksy)</h1>
+      <button class="btn" id="saveBtn">Zapisz zmiany</button>
+    </div>
+    <div class="alert success" id="savedAlert">✓ Zmiany zapisane. Strona internetowa zostanie automatycznie zaktualizowana.</div>
+
+    <!-- TAB: BOOKSY WIDGET -->
+    <div id="tab-widget">
+      <div class="widget-status inactive" id="widgetStatus"><span class="dot"></span> <span id="widgetStatusText">Widżet Booksy nie jest jeszcze podłączony — na stronie widoczny jest zapasowy formularz kontaktowy.</span></div>
+
+      <div class="card">
+        <h3>Wklej kod widżetu Booksy</h3>
+        <div class="form-group">
+          <label>Kod HTML/skrypt widżetu z Booksy (Ustawienia biznesu → Rezerwacja online → Twoja strona internetowa)</label>
+          <textarea id="booksyEmbedCode" placeholder='Wklej tutaj kod, np. <script src="https://booksy.com/widget.js" data-id="..."></script>'></textarea>
+        </div>
+        <button class="btn secondary small" id="testWidgetBtn">Sprawdź podgląd</button>
+        <div id="widgetPreview" style="margin-top:16px;border:1px dashed #e7dcd3;border-radius:10px;padding:16px;display:none;"></div>
+      </div>
+
+      <div class="card">
+        <h3>Jak podłączyć widżet Booksy — instrukcja krok po kroku</h3>
+        <ol class="step-guide">
+          <li>Zaloguj się do konta <b>Booksy Biz</b> (aplikacja lub panel przeglądarkowy).</li>
+          <li>Przejdź do <b>Ustawienia biznesu → Rezerwacja online</b>.</li>
+          <li>Znajdź sekcję <b>„Twoja strona internetowa”</b> i kliknij, aby wygenerować kod widżetu.</li>
+          <li>Skopiuj cały wygenerowany kod (przycisk „Kopiuj kod”).</li>
+          <li>Wklej skopiowany kod w polu powyżej i kliknij <b>„Zapisz zmiany”</b>.</li>
+          <li>Otwórz stronę główną i przewiń do sekcji „Rezerwacja” — powinien być widoczny kalendarz Booksy z aktualnymi wolnymi terminami.</li>
+        </ol>
+        <div class="hint">Jeśli pole zostanie puste, strona automatycznie wyświetli zapasowy formularz kontaktowy — nic się nie zepsuje. Widżet można podłączyć w każdej chwili, bez pomocy programisty.</div>
+      </div>
+    </div>
+
+    <!-- TAB: SALON DATA -->
+    <div id="tab-salon" class="section-hidden">
+      <div class="card">
+        <h3>Podstawowe dane</h3>
+        <div class="form-group"><label>Nazwa salonu</label><input id="salonName"></div>
+        <div class="form-group"><label>Adres</label><input id="salonAddress"></div>
+        <div class="form-row">
+          <div class="form-group"><label>Telefon</label><input id="salonPhone"></div>
+          <div class="form-group"><label>E-mail</label><input id="salonEmail"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Instagram (link)</label><input id="salonInstagram"></div>
+          <div class="form-group"><label>Facebook (link)</label><input id="salonFacebook"></div>
+        </div>
+        <div class="form-group"><label>Link do Google Maps (embed URL)</label><input id="salonMap"></div>
+      </div>
+      <div class="card">
+        <h3>Zdjęcia strony głównej</h3>
+        <div class="form-group">
+          <label>Zdjęcie w sekcji Hero (górna część strony)</label>
+          <input type="file" id="heroImageUpload" accept="image/*">
+          <div id="heroImagePreviewWrap" style="margin-top:10px;"></div>
+        </div>
+        <div class="form-group">
+          <label>Zdjęcie w sekcji "O salonie"</label>
+          <input type="file" id="aboutImageUpload" accept="image/*">
+          <div id="aboutImagePreviewWrap" style="margin-top:10px;"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Godziny otwarcia</h3>
+        <div id="hoursList"></div>
+        <button class="btn secondary small" id="addHourBtn">+ Dodaj wiersz</button>
+      </div>
+    </div>
+
+    <!-- TAB: TEAM -->
+    <div id="tab-team" class="section-hidden">
+      <div class="card">
+        <h3>Zespół salonu</h3>
+        <div class="hint" style="margin-bottom:14px;">Dodaj zdjęcie, imię i stanowisko każdej pracownicy.</div>
+        <div id="teamList"></div>
+        <button class="btn secondary small" id="addTeamBtn">+ Dodaj pracownicę</button>
+      </div>
+    </div>
+
+    <!-- TAB: SERVICES -->
+    <div id="tab-services" class="section-hidden">
+      <div class="card">
+        <h3>Lista usług</h3>
+        <div class="hint" style="margin-bottom:14px;">Kategorie: paznokcie, pedicure, brwi, rzesy, pm (makijaż permanentny)</div>
+        <div id="servicesList"></div>
+        <button class="btn secondary small" id="addServiceBtn">+ Dodaj usługę</button>
+      </div>
+    </div>
+
+    <!-- TAB: PORTFOLIO -->
+    <div id="tab-portfolio" class="section-hidden">
+      <div class="card">
+        <h3>Zdjęcia portfolio</h3>
+        <div class="hint" style="margin-bottom:14px;">Podaj tytuł oraz kategorię (manicure / brwi) dla każdego zdjęcia.</div>
+        <div id="portfolioList"></div>
+        <button class="btn secondary small" id="addPortfolioBtn">+ Dodaj element</button>
+      </div>
+    </div>
+
+    <!-- TAB: REVIEWS -->
+    <div id="tab-reviews" class="section-hidden">
+      <div class="card">
+        <h3>Opinie klientek</h3>
+        <div id="reviewsList"></div>
+        <button class="btn secondary small" id="addReviewBtn">+ Dodaj opinię</button>
+      </div>
+    </div>
+
+    <!-- TAB: BOOKINGS -->
+    <div id="tab-bookings" class="section-hidden">
+      <div class="card">
+        <h3>Zgłoszenia z formularza rezerwacji</h3>
+        <div class="hint" style="margin-bottom:14px;">Te zgłoszenia pojawiają się tylko wtedy, gdy widżet Booksy nie jest podłączony i klientki korzystają z zapasowego formularza.</div>
+        <div id="bookingsList"></div>
+        <button class="btn secondary small" id="clearBookingsBtn">Wyczyść listę</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const API_BASE = ''; // np. 'https://twoja-domena.com' jesli backend jest na innej domenie
+const TOKEN_KEY = 'beautyEuphoriaAdminToken';
+let data = null;
+let authToken = localStorage.getItem(TOKEN_KEY) || '';
+
+document.getElementById('loginBtn').addEventListener('click', async ()=>{
+  const password = document.getElementById('loginPassword').value;
+  try{
+    const res = await fetch(API_BASE + '/api/login', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({password})
+    });
+    if(res.ok){
+      const body = await res.json();
+      authToken = body.token;
+      localStorage.setItem(TOKEN_KEY, authToken);
+      document.getElementById('loginScreen').style.display='none';
+      document.getElementById('appLayout').style.display='flex';
+      init();
+    } else {
+      document.getElementById('loginError').style.display='block';
+    }
+  }catch(e){
+    document.getElementById('loginError').textContent = 'Serwer niedostępny. Sprawdź połączenie.';
+    document.getElementById('loginError').style.display='block';
+  }
+});
+
+async function loadData(){
+  try{
+    const res = await fetch(API_BASE + '/api/data');
+    if(res.ok) return await res.json();
+  }catch(e){}
+  const res2 = await fetch('data.json');
+  return await res2.json();
+}
+
+async function saveData(){
+  try{
+    const res = await fetch(API_BASE + '/api/data', {
+      method:'POST',
+      headers:{'Content-Type':'application/json', 'Authorization':'Bearer ' + authToken},
+      body: JSON.stringify(data)
+    });
+    if(!res.ok) throw new Error('save failed');
+    const alertEl = document.getElementById('savedAlert');
+    alertEl.style.display='block';
+    setTimeout(()=>alertEl.style.display='none', 3000);
+  }catch(e){
+    alert('Nie udało się zapisać zmian na serwerze. Sprawdź połączenie internetowe.');
+  }
+  renderWidgetStatus();
+}
+
+// TAB SWITCHING
+document.querySelectorAll('.sidebar nav a').forEach(link=>{
+  link.addEventListener('click',()=>{
+    document.querySelectorAll('.sidebar nav a').forEach(a=>a.classList.remove('active'));
+    link.classList.add('active');
+    document.querySelectorAll('.main > div[id^="tab-"]').forEach(t=>t.classList.add('section-hidden'));
+    document.getElementById(link.dataset.tab).classList.remove('section-hidden');
+    document.getElementById('pageTitle').textContent = link.textContent.trim().replace(/^[^\s]+\s/,'');
+  });
+});
+
+async function uploadImage(file){
+  const formData = new FormData();
+  formData.append('file', file);
+  try{
+    const res = await fetch(API_BASE + '/api/upload', {
+      method:'POST',
+      headers:{'Authorization':'Bearer ' + authToken},
+      body: formData
+    });
+    if(!res.ok){ alert('Nie udało się wgrać zdjęcia.'); return null; }
+    const body = await res.json();
+    return body.url;
+  }catch(e){
+    alert('Serwer niedostępny — nie udało się wgrać zdjęcia.');
+    return null;
+  }
+}
+
+function renderSalonImages(){
+  const heroWrap = document.getElementById('heroImagePreviewWrap');
+  const aboutWrap = document.getElementById('aboutImagePreviewWrap');
+  heroWrap.innerHTML = data.salon.heroImage
+    ? `<img src="${data.salon.heroImage}" style="max-width:200px;border-radius:10px;">`
+    : '<span class="hint">Brak zdjęcia — wyświetlany jest placeholder.</span>';
+  aboutWrap.innerHTML = data.salon.aboutImage
+    ? `<img src="${data.salon.aboutImage}" style="max-width:200px;border-radius:10px;">`
+    : '<span class="hint">Brak zdjęcia — wyświetlany jest placeholder.</span>';
+}
+
+document.getElementById('heroImageUpload').addEventListener('change', async (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const url = await uploadImage(file);
+  if(url){ data.salon.heroImage = url; renderSalonImages(); }
+});
+
+document.getElementById('aboutImageUpload').addEventListener('change', async (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const url = await uploadImage(file);
+  if(url){ data.salon.aboutImage = url; renderSalonImages(); }
+});
+
+function renderWidgetStatus(){
+  const statusEl = document.getElementById('widgetStatus');
+  const textEl = document.getElementById('widgetStatusText');
+  if(data.booksyEmbedCode && data.booksyEmbedCode.trim() !== ''){
+    statusEl.className = 'widget-status active';
+    textEl.textContent = 'Widżet Booksy jest podłączony — klientki widzą na stronie aktualny kalendarz Booksy.';
+  } else {
+    statusEl.className = 'widget-status inactive';
+    textEl.textContent = 'Widżet Booksy nie jest jeszcze podłączony — na stronie widoczny jest zapasowy formularz kontaktowy.';
+  }
+}
+
+function renderSalon(){
+  document.getElementById('salonName').value = data.salon.name;
+  document.getElementById('salonAddress').value = data.salon.address;
+  document.getElementById('salonPhone').value = data.salon.phone;
+  document.getElementById('salonEmail').value = data.salon.email;
+  document.getElementById('salonInstagram').value = data.salon.instagram||'';
+  document.getElementById('salonFacebook').value = data.salon.facebook||'';
+  document.getElementById('salonMap').value = data.salon.mapEmbedUrl||'';
+  renderHours();
+  renderSalonImages();
+}
+
+function renderHours(){
+  const el = document.getElementById('hoursList');
+  el.innerHTML = data.salon.hours.map((h,i)=>`
+    <div class="form-row" style="margin-bottom:10px;">
+      <input value="${h.day}" data-idx="${i}" data-field="day" class="hour-input">
+      <input value="${h.time}" data-idx="${i}" data-field="time" class="hour-input">
+    </div>`).join('');
+}
+document.getElementById('addHourBtn').addEventListener('click',()=>{
+  data.salon.hours.push({day:'Nowy dzień',time:'9:00 - 18:00'});
+  renderHours();
+});
+
+function renderTeam(){
+  const el = document.getElementById('teamList');
+  el.innerHTML = data.team.map((t,i)=>`
+    <div class="card" style="margin-bottom:14px;padding:18px;" data-idx="${i}">
+      <div class="item-row" style="grid-template-columns:1fr 1fr auto;margin-bottom:10px;">
+        <input value="${t.name}" placeholder="Imię" data-field="name">
+        <input value="${t.role}" placeholder="Stanowisko" data-field="role">
+        <button class="remove-btn" data-remove="${i}">✕</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <input type="file" accept="image/*" class="team-image-upload" style="flex:1;">
+        <div class="team-image-preview" style="width:60px;height:60px;border-radius:50%;overflow:hidden;background:var(--beige);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-light);">
+          ${t.image ? `<img src="${t.image}" style="width:100%;height:100%;object-fit:cover;">` : 'brak zdjęcia'}
+        </div>
+      </div>
+    </div>`).join('');
+  el.querySelectorAll('.item-row input').forEach(inp=>{
+    inp.addEventListener('input',()=>{
+      const row = inp.closest('[data-idx]'); const idx = +row.dataset.idx;
+      data.team[idx][inp.dataset.field] = inp.value;
+    });
+  });
+  el.querySelectorAll('[data-remove]').forEach(btn=>{
+    btn.addEventListener('click',()=>{ data.team.splice(+btn.dataset.remove,1); renderTeam(); });
+  });
+  el.querySelectorAll('.team-image-upload').forEach(inp=>{
+    inp.addEventListener('change', async (e)=>{
+      const row = inp.closest('[data-idx]'); const idx = +row.dataset.idx;
+      const file = e.target.files[0];
+      if(!file) return;
+      const url = await uploadImage(file);
+      if(url){ data.team[idx].image = url; renderTeam(); }
+    });
+  });
+}
+document.getElementById('addTeamBtn').addEventListener('click',()=>{
+  data.team.push({name:'Nowa pracownica', role:'Stylistka', image:''});
+  renderTeam();
+});
+
+function renderServices(){
+  const el = document.getElementById('servicesList');
+  el.innerHTML = data.services.map((s,i)=>`
+    <div class="card" style="margin-bottom:14px;padding:18px;" data-idx="${i}">
+      <div class="item-row" style="grid-template-columns:1fr 1fr 1fr 1fr auto;margin-bottom:10px;">
+        <input value="${s.title}" placeholder="Nazwa" data-field="title">
+        <input value="${s.cat}" placeholder="Kategoria" data-field="cat">
+        <input value="${s.price}" placeholder="Cena" data-field="price">
+        <input value="${s.duration}" placeholder="Czas" data-field="duration">
+        <button class="remove-btn" data-remove="${i}">✕</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <input type="file" accept="image/*" class="service-image-upload" style="flex:1;">
+        <div class="service-image-preview" style="width:60px;height:60px;border-radius:8px;overflow:hidden;background:var(--beige);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-light);">
+          ${s.image ? `<img src="${s.image}" style="width:100%;height:100%;object-fit:cover;">` : 'brak zdjęcia'}
+        </div>
+      </div>
+    </div>`).join('');
+  el.querySelectorAll('.item-row input').forEach(inp=>{
+    inp.addEventListener('input',()=>{
+      const row = inp.closest('[data-idx]'); const idx = +row.dataset.idx;
+      data.services[idx][inp.dataset.field] = inp.value;
+    });
+  });
+  el.querySelectorAll('[data-remove]').forEach(btn=>{
+    btn.addEventListener('click',()=>{ data.services.splice(+btn.dataset.remove,1); renderServices(); });
+  });
+  el.querySelectorAll('.service-image-upload').forEach(inp=>{
+    inp.addEventListener('change', async (e)=>{
+      const row = inp.closest('[data-idx]'); const idx = +row.dataset.idx;
+      const file = e.target.files[0];
+      if(!file) return;
+      const url = await uploadImage(file);
+      if(url){
+        data.services[idx].image = url;
+        renderServices();
+      }
+    });
+  });
+}
+document.getElementById('addServiceBtn').addEventListener('click',()=>{
+  data.services.push({cat:'paznokcie',icon:'💅',title:'Nowa usługa',desc:'',price:'0,00 zł',duration:'30min'});
+  renderServices();
+});
+
+function renderPortfolio(){
+  const el = document.getElementById('portfolioList');
+  el.innerHTML = data.portfolio.map((p,i)=>`
+    <div class="card" style="margin-bottom:14px;padding:18px;" data-idx="${i}">
+      <div class="item-row" style="grid-template-columns:2fr 1fr auto;margin-bottom:10px;">
+        <input value="${p.title}" placeholder="Tytuł" data-field="title">
+        <input value="${p.cat}" placeholder="Kategoria" data-field="cat">
+        <button class="remove-btn" data-remove="${i}">✕</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <input type="file" accept="image/*" class="portfolio-image-upload" style="flex:1;">
+        <div class="portfolio-image-preview" style="width:60px;height:60px;border-radius:8px;overflow:hidden;background:var(--beige);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text-light);">
+          ${p.image ? `<img src="${p.image}" style="width:100%;height:100%;object-fit:cover;">` : 'brak zdjęcia'}
+        </div>
+      </div>
+    </div>`).join('');
+  el.querySelectorAll('.item-row input').forEach(inp=>{
+    inp.addEventListener('input',()=>{
+      const row = inp.closest('[data-idx]'); const idx = +row.dataset.idx;
+      data.portfolio[idx][inp.dataset.field] = inp.value;
+    });
+  });
+  el.querySelectorAll('[data-remove]').forEach(btn=>{
+    btn.addEventListener('click',()=>{ data.portfolio.splice(+btn.dataset.remove,1); renderPortfolio(); });
+  });
+  el.querySelectorAll('.portfolio-image-upload').forEach(inp=>{
+    inp.addEventListener('change', async (e)=>{
+      const row = inp.closest('[data-idx]'); const idx = +row.dataset.idx;
+      const file = e.target.files[0];
+      if(!file) return;
+      const url = await uploadImage(file);
+      if(url){
+        data.portfolio[idx].image = url;
+        renderPortfolio();
+      }
+    });
+  });
+}
+document.getElementById('addPortfolioBtn').addEventListener('click',()=>{
+  data.portfolio.push({cat:'manicure',title:'Nowe zdjęcie'});
+  renderPortfolio();
+});
+
+function renderReviews(){
+  const el = document.getElementById('reviewsList');
+  el.innerHTML = data.reviews.map((r,i)=>`
+    <div class="card" style="margin-bottom:14px;" data-idx="${i}">
+      <div class="form-row" style="margin-bottom:10px;">
+        <input value="${r.name}" placeholder="Imię" data-field="name">
+        <input value="${r.service}" placeholder="Usługa" data-field="service">
+      </div>
+      <div class="form-row" style="margin-bottom:10px;">
+        <input value="${r.stars}" placeholder="Ocena (1-5)" data-field="stars" type="number" min="1" max="5">
+        <button class="remove-btn" data-remove="${i}">✕ Usuń opinię</button>
+      </div>
+      <textarea data-field="text" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee0d5;">${r.text}</textarea>
+    </div>`).join('');
+  el.querySelectorAll('input,textarea').forEach(inp=>{
+    inp.addEventListener('input',()=>{
+      const row = inp.closest('[data-idx]'); const idx = +row.dataset.idx;
+      const field = inp.dataset.field;
+      data.reviews[idx][field] = field==='stars' ? +inp.value : inp.value;
+    });
+  });
+  el.querySelectorAll('[data-remove]').forEach(btn=>{
+    btn.addEventListener('click',()=>{ data.reviews.splice(+btn.dataset.remove,1); renderReviews(); });
+  });
+}
+document.getElementById('addReviewBtn').addEventListener('click',()=>{
+  data.reviews.push({name:'Nowa klientka',stars:5,text:'Świetna obsługa!',service:'Manicure'});
+  renderReviews();
+});
+
+async function renderBookings(){
+  const el = document.getElementById('bookingsList');
+  let bookings = [];
+  try{
+    const res = await fetch(API_BASE + '/api/bookings', { headers:{'Authorization':'Bearer ' + authToken} });
+    if(res.ok) bookings = await res.json();
+  }catch(e){}
+  if(bookings.length===0){ el.innerHTML = '<div class="hint">Brak nowych zgłoszeń.</div>'; return; }
+  el.innerHTML = bookings.slice().reverse().map(b=>`
+    <div class="booking-item">
+      <strong>${b.name}</strong> — ${b.service}<br>
+      📞 ${b.phone} ${b.email?('| ✉️ '+b.email):''}<br>
+      📅 ${b.date||'-'} ${b.time||''} ${b.comment?('<br>💬 '+b.comment):''}
+    </div>`).join('');
+}
+document.getElementById('clearBookingsBtn').addEventListener('click', async ()=>{
+  await fetch(API_BASE + '/api/bookings/clear', { method:'POST', headers:{'Authorization':'Bearer ' + authToken} });
+  renderBookings();
+});
+
+document.getElementById('testWidgetBtn').addEventListener('click',()=>{
+  const code = document.getElementById('booksyEmbedCode').value;
+  const preview = document.getElementById('widgetPreview');
+  preview.style.display='block';
+  preview.innerHTML = code.trim() ? code : '<span style="color:#a9622f;">Pole jest puste — wklej kod widżetu Booksy powyżej.</span>';
+});
+
+document.getElementById('saveBtn').addEventListener('click',()=>{
+  data.salon.name = document.getElementById('salonName').value;
+  data.salon.address = document.getElementById('salonAddress').value;
+  data.salon.phone = document.getElementById('salonPhone').value;
+  data.salon.email = document.getElementById('salonEmail').value;
+  data.salon.instagram = document.getElementById('salonInstagram').value;
+  data.salon.facebook = document.getElementById('salonFacebook').value;
+  data.salon.mapEmbedUrl = document.getElementById('salonMap').value;
+  document.querySelectorAll('.hour-input').forEach(inp=>{
+    data.salon.hours[+inp.dataset.idx][inp.dataset.field] = inp.value;
+  });
+  data.booksyEmbedCode = document.getElementById('booksyEmbedCode').value;
+  saveData();
+});
+
+async function init(){
+  data = await loadData();
+  if(!data.team) data.team = [];
+  renderSalon();
+  renderTeam();
+  renderServices();
+  renderPortfolio();
+  renderReviews();
+  renderBookings();
+  document.getElementById('booksyEmbedCode').value = data.booksyEmbedCode || '';
+  renderWidgetStatus();
+}
+
+if(authToken){
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('appLayout').style.display='flex';
+  init();
+}
+</script>
+</body>
+</html>

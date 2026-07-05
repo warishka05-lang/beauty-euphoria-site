@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beauty Euphoria — Salon Manicure i Brwi | Bydgoszcz</title>
+<meta name="description" content="Beauty Euphoria — salon manicure i stylizacji brwi w Bydgoszczy. Zarezerwuj wizytę online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json" id="schemaLd">
+{
+  "@context": "https://schema.org",
+  "@type": "BeautySalon",
+  "name": "Beauty Euphoria",
+  "address": {"@type": "PostalAddress","streetAddress": "","addressLocality": "Bydgoszcz","addressCountry": "PL"},
+  "telephone": "",
+  "openingHours": "Mo-Sa 09:00-19:00"
+}
+</script>
+<style>
+:root{--powder:#f7e6e0;--beige:#f3ece2;--white:#fffaf7;--gold:#c9a15a;--gold-dark:#a9803f;--text:#4a3f3a;--text-light:#7d6f68;--radius:18px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--white);line-height:1.6;overflow-x:hidden;}
+h1,h2,h3,.logo{font-family:'Playfair Display',serif;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+.container{max-width:1180px;margin:0 auto;padding:0 24px;}
+.btn{display:inline-block;padding:14px 32px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;border:none;border-radius:50px;font-weight:500;font-size:15px;cursor:pointer;transition:transform .25s,box-shadow .25s;letter-spacing:.3px;}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(169,128,63,.35);}
+.btn-outline{background:transparent;border:1.5px solid var(--gold);color:var(--gold-dark);}
+.section{padding:90px 0;}
+.section-title{text-align:center;font-size:38px;color:var(--text);margin-bottom:12px;}
+.section-sub{text-align:center;color:var(--text-light);max-width:560px;margin:0 auto 50px;font-size:15px;}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+header{position:fixed;top:0;left:0;width:100%;background:rgba(255,250,247,.92);backdrop-filter:blur(8px);z-index:1000;box-shadow:0 2px 16px rgba(0,0,0,.05);}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1180px;margin:0 auto;}
+.logo{font-size:24px;font-weight:700;color:var(--gold-dark);}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{font-size:14.5px;font-weight:500;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-6px;left:0;width:0;height:2px;background:var(--gold);transition:width .3s;}
+.nav-links a:hover::after{width:100%;}
+.nav-actions{display:flex;align-items:center;}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.burger span{width:26px;height:2px;background:var(--text);}
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;background:linear-gradient(135deg,var(--powder) 0%,var(--beige) 100%);overflow:hidden;padding-top:80px;}
+.hero::before{content:'';position:absolute;right:-120px;top:-120px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(201,161,90,.25),transparent 70%);}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;width:100%;}
+.hero-text h1{font-size:48px;line-height:1.2;margin-bottom:20px;color:var(--text);}
+.hero-text h1 span{color:var(--gold-dark);}
+.hero-text p{font-size:17px;color:var(--text-light);margin-bottom:34px;max-width:460px;}
+.hero-buttons{display:flex;gap:16px;flex-wrap:wrap;}
+.hero-image{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/5;background:linear-gradient(135deg,#eddcd3,#f6ece4);display:flex;align-items:center;justify-content:center;box-shadow:0 30px 60px rgba(169,128,63,.2);}
+.hero-image .placeholder-text{color:var(--gold-dark);font-family:'Playfair Display',serif;font-size:20px;text-align:center;padding:20px;}
+.hero-badge{position:absolute;bottom:24px;left:24px;background:#fff;padding:14px 20px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08);display:flex;align-items:center;gap:10px;font-size:14px;}
+.stars{color:var(--gold);}
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center;}
+.about-image{border-radius:var(--radius);aspect-ratio:1/1;background:linear-gradient(135deg,var(--beige),var(--powder));display:flex;align-items:center;justify-content:center;color:var(--gold-dark);font-family:'Playfair Display',serif;}
+.about-text p{margin-bottom:16px;color:var(--text-light);font-size:15.5px;}
+.about-values{display:flex;gap:24px;margin-top:28px;flex-wrap:wrap;}
+.value-item{text-align:center;}
+.value-item .num{font-size:30px;font-family:'Playfair Display',serif;color:var(--gold-dark);font-weight:700;}
+.value-item .label{font-size:13px;color:var(--text-light);}
+.services-tabs{display:flex;justify-content:center;gap:14px;margin-bottom:44px;flex-wrap:wrap;}
+.tab-btn{padding:10px 26px;border-radius:50px;border:1.5px solid var(--gold);background:transparent;color:var(--gold-dark);font-weight:500;cursor:pointer;font-size:14px;transition:.25s;}
+.tab-btn.active{background:var(--gold);color:#fff;}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+.service-card{background:var(--white);border:1px solid #f0e4dc;border-radius:var(--radius);padding:30px 26px;transition:transform .3s,box-shadow .3s;display:none;}
+.service-card.show{display:block;}
+.service-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(169,128,63,.15);}
+.service-icon{font-size:30px;margin-bottom:14px;}
+.service-card h3{font-size:19px;margin-bottom:8px;}
+.service-card p.desc{font-size:13.5px;color:var(--text-light);margin-bottom:16px;min-height:20px;}
+.service-price{font-size:22px;font-weight:600;color:var(--gold-dark);margin-bottom:16px;font-family:'Playfair Display',serif;}
+.service-card .btn{width:100%;text-align:center;padding:11px;font-size:14px;}
+.portfolio-filters{display:flex;justify-content:center;gap:14px;margin-bottom:36px;flex-wrap:wrap;}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.portfolio-item{border-radius:14px;overflow:hidden;aspect-ratio:1/1;background:linear-gradient(135deg,#f0e0d6,#f7ece3);display:flex;align-items:center;justify-content:center;color:var(--gold-dark);font-size:14px;text-align:center;padding:10px;cursor:pointer;position:relative;transition:transform .4s;}
+.portfolio-item:hover{transform:scale(1.04);}
+.reviews-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;}
+.review-card{min-width:300px;scroll-snap-align:start;background:var(--beige);border-radius:var(--radius);padding:28px;flex:1;}
+.review-card .stars{margin-bottom:10px;font-size:15px;}
+.review-card p{font-size:14.5px;color:var(--text-light);margin-bottom:16px;font-style:italic;}
+.review-author{display:flex;align-items:center;gap:12px;}
+.avatar{width:40px;height:40px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-family:'Playfair Display',serif;}
+.review-author strong{font-size:14px;display:block;}
+.review-author span{font-size:12px;color:var(--text-light);}
+.booking{background:linear-gradient(135deg,var(--powder),var(--beige));}
+.booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;}
+.booking-info h2{font-size:32px;margin-bottom:16px;}
+.booking-info p{color:var(--text-light);margin-bottom:24px;}
+.booking-steps{list-style:none;display:flex;flex-direction:column;gap:16px;}
+.booking-steps li{display:flex;gap:14px;align-items:flex-start;font-size:14.5px;color:var(--text);}
+.step-num{min-width:30px;height:30px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;}
+.booking-panel{background:#fff;border-radius:var(--radius);padding:36px;box-shadow:0 20px 50px rgba(169,128,63,.15);min-height:200px;}
+.form-group{margin-bottom:18px;}
+.form-group label{display:block;font-size:13px;margin-bottom:6px;color:var(--text-light);}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 14px;border:1px solid #e7dcd3;border-radius:10px;font-family:inherit;font-size:14px;background:var(--white);color:var(--text);}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--gold);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-error{color:#c0392b;font-size:12px;margin-top:4px;display:none;}
+.form-success{display:none;background:#e9f7ef;color:#1e7e46;padding:14px;border-radius:10px;font-size:14px;margin-top:14px;text-align:center;}
+.booking-panel .btn{width:100%;margin-top:6px;}
+#booksyWidgetContainer{width:100%;min-height:400px;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;}
+.contact-list{list-style:none;display:flex;flex-direction:column;gap:20px;margin-top:20px;}
+.contact-list li{display:flex;gap:14px;align-items:flex-start;font-size:14.5px;}
+.contact-icon{min-width:38px;height:38px;border-radius:50%;background:var(--powder);display:flex;align-items:center;justify-content:center;font-size:16px;}
+.hours-table{width:100%;margin-top:20px;border-collapse:collapse;font-size:14px;}
+.hours-table td{padding:8px 0;border-bottom:1px solid #f0e6de;color:var(--text-light);}
+.hours-table td:last-child{text-align:right;color:var(--text);font-weight:500;}
+.map-box{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;}
+.map-box iframe{width:100%;height:100%;border:0;}
+.social-icons{display:flex;gap:14px;margin-top:20px;}
+.social-icons a{width:42px;height:42px;border-radius:50%;background:var(--powder);display:flex;align-items:center;justify-content:center;color:var(--gold-dark);font-size:18px;transition:.25s;}
+.social-icons a:hover{background:var(--gold);color:#fff;}
+footer{background:#2f2621;color:#e8ddd4;padding:60px 0 24px;}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-bottom:40px;}
+.footer-grid h4{font-family:'Playfair Display',serif;color:#fff;margin-bottom:16px;font-size:17px;}
+.footer-grid ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-grid a{font-size:13.5px;color:#c7bcb2;}
+.footer-grid a:hover{color:var(--gold);}
+.footer-bottom{text-align:center;font-size:12.5px;color:#8a7f76;border-top:1px solid #453a33;padding-top:20px;}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;}
+.team-card{text-align:center;}
+.team-avatar{width:110px;height:110px;border-radius:50%;margin:0 auto 16px;overflow:hidden;background:linear-gradient(135deg,var(--powder),var(--beige));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:32px;color:var(--gold-dark);}
+.team-avatar img{width:100%;height:100%;object-fit:cover;}
+.team-card h3{font-size:16px;margin-bottom:4px;}
+.team-card p{font-size:13px;color:var(--text-light);}
+@media(max-width:900px){.team-grid{grid-template-columns:repeat(2,1fr);}}
+.to-top{position:fixed;bottom:26px;right:26px;width:46px;height:46px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 10px 24px rgba(0,0,0,.2);opacity:0;pointer-events:none;transition:.3s;z-index:999;}
+.to-top.show{opacity:1;pointer-events:auto;}
+@media(max-width:900px){
+  .nav-links{position:fixed;top:74px;left:0;width:100%;background:#fffaf7;flex-direction:column;padding:24px;gap:20px;transform:translateY(-120%);transition:transform .35s;box-shadow:0 10px 20px rgba(0,0,0,.05);}
+  .nav-links.open{transform:translateY(0);}
+  .burger{display:flex;}
+  .hero-grid,.about-grid,.booking-grid,.contact-grid{grid-template-columns:1fr;}
+  .hero-text h1{font-size:34px;}
+  .services-grid,.portfolio-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .form-row{grid-template-columns:1fr;}
+}
+@media(max-width:520px){
+  .services-grid,.portfolio-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .section{padding:60px 0;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="#" class="logo" id="siteLogo">Beauty Euphoria</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#uslugi">Usługi</a></li>
+      <li><a href="#pracownicy">Pracownicy</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#opinie">Opinie</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#rezerwacja" class="btn">Zarezerwuj wizytę</a>
+    </div>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-text reveal">
+      <h1 id="heroTitle">Beauty Euphoria — <span>Twój salon manicure i brwi</span> w Bydgoszczy</h1>
+      <p>Profesjonalna stylizacja paznokci i brwi w przyjemnej, kobiecej atmosferze. Umów wizytę online i poczuj się piękna każdego dnia.</p>
+      <div class="hero-buttons">
+        <a href="#rezerwacja" class="btn">Umów wizytę online</a>
+        <a href="#uslugi" class="btn btn-outline">Zobacz usługi</a>
+      </div>
+    </div>
+    <div class="hero-image reveal" id="heroImageBox">
+      <div class="placeholder-text" id="heroPlaceholder">📸<br>Zdjęcie salonu<br>/ prac stylizacyjnych</div>
+      <img id="heroImg" style="display:none;width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;" loading="lazy">
+      <div class="hero-badge"><span class="stars">★★★★★</span> 4.9 / 5 na Booksy</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="o-nas">
+  <div class="container about-grid">
+    <div class="about-image reveal" id="aboutImageBox">
+      <span id="aboutPlaceholder">Zdjęcie<br>wnętrza salonu</span>
+      <img id="aboutImg" style="display:none;width:100%;height:100%;object-fit:cover;border-radius:var(--radius);" loading="lazy">
+    </div>
+    <div class="about-text reveal">
+      <h2 class="section-title" style="text-align:left;">O naszym salonie</h2>
+      <p>Beauty Euphoria to miejsce stworzone z pasji do detali i dbałości o piękno. Nasz zespół doświadczonych stylistek paznokci i brwi łączy precyzję z indywidualnym podejściem do każdej klientki.</p>
+      <p>Używamy wyłącznie wysokiej jakości produktów, dbając o bezpieczeństwo i trwałość efektów.</p>
+      <div class="about-values">
+        <div class="value-item"><div class="num">5+</div><div class="label">lat doświadczenia</div></div>
+        <div class="value-item"><div class="num">2000+</div><div class="label">zadowolonych klientek</div></div>
+        <div class="value-item"><div class="num">4.9★</div><div class="label">średnia ocena</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="uslugi" style="background:var(--beige);">
+  <div class="container">
+    <h2 class="section-title reveal">Usługi i cennik</h2>
+    <p class="section-sub reveal">Wybierz usługę i zarezerwuj wizytę online w kilka kliknięć</p>
+    <div class="services-tabs" id="servicesTabs"></div>
+    <div class="services-grid" id="servicesGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="pracownicy" style="background:var(--beige);">
+  <div class="container">
+    <h2 class="section-title reveal">Pracownicy</h2>
+    <p class="section-sub reveal">Poznaj nasz zespół doświadczonych stylistek</p>
+    <div class="team-grid" id="teamGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="portfolio">
+  <div class="container">
+    <h2 class="section-title reveal">Nasze prace</h2>
+    <p class="section-sub reveal">Zobacz efekty naszej pracy</p>
+    <div class="portfolio-filters" id="portfolioFilters"></div>
+    <div class="portfolio-grid filter-all" id="portfolioGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="opinie" style="background:var(--beige);">
+  <div class="container">
+    <h2 class="section-title reveal">Opinie klientek</h2>
+    <p class="section-sub reveal">Zaufały nam setki kobiet w Bydgoszczy</p>
+    <div class="reviews-track reveal" id="reviewsTrack"></div>
+  </div>
+</section>
+
+<section class="section booking" id="rezerwacja">
+  <div class="container booking-grid">
+    <div class="booking-info reveal">
+      <h2>Rezerwacja online w 2 minuty</h2>
+      <p>Wypełnij formularz poniżej lub skorzystaj z widżetu Booksy, aby umówić wizytę o dowolnej porze dnia.</p>
+      <ul class="booking-steps">
+        <li><div class="step-num">1</div><div>Wybierz usługę i preferowaną datę</div></li>
+        <li><div class="step-num">2</div><div>Podaj dane kontaktowe</div></li>
+        <li><div class="step-num">3</div><div>Otrzymasz potwierdzenie SMS/e-mail</div></li>
+        <li><div class="step-num">4</div><div>Przyjdź do salonu i zrelaksuj się 💆‍♀️</div></li>
+      </ul>
+    </div>
+
+    <!-- BOOKSY WIDGET SLOT: administrator wkleja kod widżetu Booksy w panelu admina.
+         Jeśli kod jest ustawiony w data.json / localStorage -> zostanie wstawiony tutaj automatycznie.
+         Jeśli nie -> wyświetla się zapasowy formularz kontaktowy. -->
+    <div class="booking-panel reveal" id="bookingPanel">
+      <div id="booksyWidgetContainer" style="display:none;"></div>
+      <div id="booksyDemoMockup" style="display:none;text-align:center;padding:20px 0;">
+        <div style="background:linear-gradient(135deg,#1a8fa0,#0d6b7a);border-radius:16px;padding:40px 24px;color:#fff;">
+          <div style="font-size:15px;opacity:.85;margin-bottom:6px;">Podgląd — tak może wyglądać widżet Booksy</div>
+          <h3 style="color:#fff;font-family:'Playfair Display',serif;font-size:24px;margin-bottom:18px;">Beauty Euphoria</h3>
+          <div style="background:#fff;border-radius:12px;padding:20px;color:var(--text);text-align:left;">
+            <div style="font-size:13px;color:var(--text-light);margin-bottom:10px;">Wybierz usługę i termin</div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f0e6de;">
+              <span>Manicure hybrydowy (kolor)</span><strong>140,00 zł</strong>
+            </div>
+            <div style="display:flex;gap:8px;margin:14px 0;flex-wrap:wrap;">
+              <span style="background:var(--beige);padding:6px 14px;border-radius:20px;font-size:13px;">Pn 07.07 · 10:00</span>
+              <span style="background:var(--gold);color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;">Wt 08.07 · 12:30</span>
+              <span style="background:var(--beige);padding:6px 14px;border-radius:20px;font-size:13px;">Śr 09.07 · 15:00</span>
+            </div>
+            <button class="btn" style="width:100%;">Zarezerwuj termin</button>
+          </div>
+        </div>
+        <div class="hint" style="margin-top:14px;">To jest tylko przykładowa makieta. Prawdziwy widżet Booksy zostanie automatycznie wstawiony w tym miejscu po wklejeniu kodu w panelu admina.</div>
+      </div>
+
+      <form id="bookingForm" novalidate>
+        <div class="form-group">
+          <label for="name">Imię i nazwisko *</label>
+          <input type="text" id="name" required>
+          <div class="form-error">Proszę podać imię i nazwisko.</div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Telefon *</label>
+            <input type="tel" id="phone" required>
+            <div class="form-error">Proszę podać poprawny numer telefonu.</div>
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="service">Usługa *</label>
+          <select id="service" required><option value="">Wybierz usługę</option></select>
+          <div class="form-error">Proszę wybrać usługę.</div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="date">Data *</label><input type="date" id="date" required></div>
+          <div class="form-group"><label for="time">Godzina *</label><input type="time" id="time" required></div>
+        </div>
+        <div class="form-group"><label for="comment">Komentarz</label><textarea id="comment" rows="3"></textarea></div>
+        <button type="submit" class="btn">Wyślij rezerwację</button>
+        <div class="form-success" id="formSuccess">✓ Dziękujemy! Twoja rezerwacja została wysłana.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="kontakt">
+  <div class="container contact-grid">
+    <div class="reveal">
+      <h2 class="section-title" style="text-align:left;">Kontakt</h2>
+      <ul class="contact-list">
+        <li><div class="contact-icon">📍</div><div id="contactAddress"></div></li>
+        <li><div class="contact-icon">📞</div><div id="contactPhone"></div></li>
+        <li><div class="contact-icon">✉️</div><div id="contactEmail"></div></li>
+      </ul>
+      <table class="hours-table" id="hoursTable"></table>
+      <div class="social-icons" id="socialIcons"></div>
+    </div>
+    <div class="map-box reveal"><iframe id="mapFrame" loading="lazy" allowfullscreen></iframe></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <h4>Beauty Euphoria</h4>
+      <p style="font-size:13.5px;color:#c7bcb2;">Salon manicure i brwi w Bydgoszczy. Twoje piękno, nasza pasja.</p>
+    </div>
+    <div>
+      <h4>Nawigacja</h4>
+      <ul><li><a href="#uslugi">Usługi</a></li><li><a href="#portfolio">Portfolio</a></li><li><a href="#opinie">Opinie</a></li><li><a href="#kontakt">Kontakt</a></li></ul>
+    </div>
+    <div>
+      <h4>Godziny otwarcia</h4>
+      <ul id="footerHours"></ul>
+    </div>
+    <div>
+      <h4>Social media</h4>
+      <ul id="footerSocial"></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Beauty Euphoria. Wszystkie prawa zastrzeżone. | <a href="admin.html" style="color:#8a7f76;">Panel administracyjny</a></div>
+</footer>
+
+<div class="to-top" id="toTop">↑</div>
+
+<script>
+const API_BASE = ''; // np. 'https://twoja-domena.com' jesli backend jest na innej domenie
+
+async function loadData(){
+  try{
+    const res = await fetch(API_BASE + '/api/data');
+    if(res.ok) return await res.json();
+  }catch(e){ console.warn('API niedostepne, wczytuję dane lokalne', e); }
+  const res2 = await fetch('data.json');
+  return await res2.json();
+}
+
+function esc(s){ return (s||'').toString(); }
+
+function renderAll(data){
+  document.getElementById('siteLogo').textContent = data.salon.name;
+  document.getElementById('heroTitle').innerHTML = data.salon.name + ' — <span>Twój salon manicure i brwi</span> w ' + (data.salon.address.split(',').pop().trim() || 'Bydgoszczy');
+
+  const teamGrid = document.getElementById('teamGrid');
+  if(teamGrid && data.team){
+    teamGrid.innerHTML = data.team.map(t=>`
+      <div class="team-card">
+        <div class="team-avatar">${t.image ? `<img src="${t.image}">` : esc(t.name)[0]}</div>
+        <h3>${esc(t.name)}</h3>
+        <p>${esc(t.role)}</p>
+      </div>`).join('');
+  }
+
+  if(data.salon.heroImage){
+    document.getElementById('heroImg').src = data.salon.heroImage;
+    document.getElementById('heroImg').style.display='block';
+    document.getElementById('heroPlaceholder').style.display='none';
+  }
+  if(data.salon.aboutImage){
+    document.getElementById('aboutImg').src = data.salon.aboutImage;
+    document.getElementById('aboutImg').style.display='block';
+    document.getElementById('aboutPlaceholder').style.display='none';
+  }
+
+  // contact
+  document.getElementById('contactAddress').textContent = data.salon.address;
+  document.getElementById('contactPhone').textContent = data.salon.phone;
+  document.getElementById('contactEmail').textContent = data.salon.email;
+  document.getElementById('mapFrame').src = data.salon.mapEmbedUrl || 'https://www.google.com/maps?q=Bydgoszcz&output=embed';
+
+  const hoursTable = document.getElementById('hoursTable');
+  const footerHours = document.getElementById('footerHours');
+  hoursTable.innerHTML=''; footerHours.innerHTML='';
+  (data.salon.hours||[]).forEach(h=>{
+    hoursTable.innerHTML += `<tr><td>${esc(h.day)}</td><td>${esc(h.time)}</td></tr>`;
+    footerHours.innerHTML += `<li>${esc(h.day)}: ${esc(h.time)}</li>`;
+  });
+
+  const socialIcons = document.getElementById('socialIcons');
+  const footerSocial = document.getElementById('footerSocial');
+  socialIcons.innerHTML=''; footerSocial.innerHTML='';
+  if(data.salon.instagram){
+    socialIcons.innerHTML += `<a href="${data.salon.instagram}" target="_blank">📷</a>`;
+    footerSocial.innerHTML += `<li><a href="${data.salon.instagram}" target="_blank">Instagram</a></li>`;
+  }
+  if(data.salon.facebook){
+    socialIcons.innerHTML += `<a href="${data.salon.facebook}" target="_blank">📘</a>`;
+    footerSocial.innerHTML += `<li><a href="${data.salon.facebook}" target="_blank">Facebook</a></li>`;
+  }
+  footerSocial.innerHTML += `<li><a href="#rezerwacja">Booksy</a></li>`;
+
+  // services
+  const cats = [...new Set(data.services.map(s=>s.cat))];
+  const catNames = {paznokcie:'Stylizacja paznokci',pedicure:'Pedicure',brwi:'Brwi',rzesy:'Rzęsy',pm:'Makijaż permanentny'};
+  const tabsEl = document.getElementById('servicesTabs');
+  tabsEl.innerHTML = `<button class="tab-btn active" data-cat="all">Wszystkie</button>` +
+    cats.map(c=>`<button class="tab-btn" data-cat="${c}">${catNames[c]||c}</button>`).join('');
+
+  const gridEl = document.getElementById('servicesGrid');
+  gridEl.innerHTML = data.services.map(s=>`
+    <div class="service-card show" data-cat="${s.cat}">
+      ${s.image ? `<img src="${s.image}" style="width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:14px;" loading="lazy">` : `<div class="service-icon">${s.icon||'💅'}</div>`}
+      <h3>${esc(s.title)}</h3>
+      <p class="desc">${esc(s.desc)}</p>
+      <div class="service-price">${esc(s.price)} <span style="font-size:12px;color:var(--text-light);font-weight:400;">/ ${esc(s.duration)}</span></div>
+      <a href="#rezerwacja" class="btn btn-outline">Zarezerwuj</a>
+    </div>`).join('');
+
+  tabsEl.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      tabsEl.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      gridEl.querySelectorAll('.service-card').forEach(card=>{
+        card.classList.toggle('show', cat==='all' || card.dataset.cat===cat);
+      });
+    });
+  });
+
+  // service select in form
+  const serviceSelect = document.getElementById('service');
+  serviceSelect.innerHTML = '<option value="">Wybierz usługę</option>' +
+    data.services.map(s=>`<option>${esc(s.title)}</option>`).join('');
+
+  // portfolio
+  const pcats = [...new Set(data.portfolio.map(p=>p.cat))];
+  const pFilters = document.getElementById('portfolioFilters');
+  pFilters.innerHTML = `<button class="tab-btn active" data-filter="all">Wszystkie</button>` +
+    pcats.map(c=>`<button class="tab-btn" data-filter="${c}">${c==='manicure'?'Manicure':'Brwi'}</button>`).join('');
+  const pGrid = document.getElementById('portfolioGrid');
+  pGrid.innerHTML = data.portfolio.map(p=>`
+    <div class="portfolio-item" data-cat="${p.cat}" style="${p.image ? 'padding:0;' : ''}">
+      ${p.image ? `<img src="${p.image}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">` : esc(p.title)}
+    </div>`).join('');
+  pFilters.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      pFilters.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      pGrid.querySelectorAll('.portfolio-item').forEach(item=>{
+        item.style.display = (f==='all'||item.dataset.cat===f) ? 'flex' : 'none';
+      });
+    });
+  });
+
+  // reviews
+  const track = document.getElementById('reviewsTrack');
+  track.innerHTML = data.reviews.map(r=>`
+    <div class="review-card">
+      <div class="stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
+      <p>"${esc(r.text)}"</p>
+      <div class="review-author"><div class="avatar">${esc(r.name)[0]}</div><div><strong>${esc(r.name)}</strong><span>${esc(r.service)}</span></div></div>
+    </div>`).join('');
+
+  // BOOKSY WIDGET INJECTION POINT
+  const widgetContainer = document.getElementById('booksyWidgetContainer');
+  const demoMockup = document.getElementById('booksyDemoMockup');
+  const form = document.getElementById('bookingForm');
+  if(data.booksyEmbedCode && data.booksyEmbedCode.trim() !== ''){
+    widgetContainer.innerHTML = data.booksyEmbedCode;
+    widgetContainer.style.display = 'block';
+    demoMockup.style.display = 'none';
+    form.style.display = 'none';
+    widgetContainer.querySelectorAll('script').forEach(oldScript=>{
+      const newScript = document.createElement('script');
+      Array.from(oldScript.attributes).forEach(attr=>newScript.setAttribute(attr.name, attr.value));
+      newScript.textContent = oldScript.textContent;
+      oldScript.parentNode.replaceChild(newScript, oldScript);
+    });
+  } else if(new URLSearchParams(window.location.search).get('demo') === 'booksy'){
+    widgetContainer.style.display = 'none';
+    demoMockup.style.display = 'block';
+    form.style.display = 'none';
+  } else {
+    widgetContainer.style.display = 'none';
+    demoMockup.style.display = 'none';
+    form.style.display = 'block';
+  }
+
+  // schema.org update
+  try{
+    const ld = JSON.parse(document.getElementById('schemaLd').textContent);
+    ld.name = data.salon.name;
+    ld.telephone = data.salon.phone;
+    ld.address.streetAddress = data.salon.address;
+    document.getElementById('schemaLd').textContent = JSON.stringify(ld);
+  }catch(e){}
+
+  initReveal();
+}
+
+function initReveal(){
+  const revealEls=document.querySelectorAll('.reveal');
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{ if(entry.isIntersecting) entry.target.classList.add('visible'); });
+  },{threshold:0.15});
+  revealEls.forEach(el=>observer.observe(el));
+}
+
+// mobile nav
+const burger=document.getElementById('burger');
+const navLinks=document.getElementById('navLinks');
+burger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+// booking form validation
+document.getElementById('bookingForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  let valid=true;
+  const name=document.getElementById('name');
+  const phone=document.getElementById('phone');
+  const service=document.getElementById('service');
+  const phoneRegex=/^[+]?[\d\s-]{7,15}$/;
+  [name,phone,service].forEach(f=>{
+    const errorDiv=f.parentElement.querySelector('.form-error');
+    if(!f.value.trim()){ if(errorDiv) errorDiv.style.display='block'; valid=false; }
+    else if(errorDiv) errorDiv.style.display='none';
+  });
+  if(phone.value && !phoneRegex.test(phone.value)){
+    phone.parentElement.querySelector('.form-error').style.display='block'; valid=false;
+  }
+  if(valid){
+    const booking = {
+      name:name.value, phone:phone.value, email:document.getElementById('email').value,
+      service:service.value, date:document.getElementById('date').value,
+      time:document.getElementById('time').value, comment:document.getElementById('comment').value
+    };
+    fetch(API_BASE + '/api/bookings', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(booking)
+    }).catch(e=>console.warn('Nie udalo sie wyslac zgloszenia do serwera', e));
+    document.getElementById('formSuccess').style.display='block';
+    this.reset();
+    setTimeout(()=>document.getElementById('formSuccess').style.display='none',5000);
+  }
+});
+
+const toTop=document.getElementById('toTop');
+window.addEventListener('scroll',()=>{ toTop.classList.toggle('show', window.scrollY>400); });
+toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+loadData().then(renderAll);
+</script>
+</body>
+</html>

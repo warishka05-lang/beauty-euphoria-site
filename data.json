@@ -1,0 +1,435 @@
+{
+  "salon": {
+    "name": "Beauty Euphoria",
+    "address": "ul. Karola Libelta 2A (I piętro, wejście z podwórka), 85-008 Bydgoszcz",
+    "phone": "+48 664 330 697",
+    "email": "kontakt@beautyeuphoria.pl",
+    "hours": [
+      {
+        "day": "Poniedziałek – Piątek",
+        "time": "9:00 – 19:00"
+      },
+      {
+        "day": "Sobota",
+        "time": "9:00 – 15:00"
+      },
+      {
+        "day": "Niedziela",
+        "time": "Zamknięte"
+      }
+    ],
+    "instagram": "https://instagram.com/beautyeuphoria.bydgoszcz",
+    "facebook": "",
+    "mapEmbedUrl": "https://www.google.com/maps?q=Karola+Libelta+2A+Bydgoszcz&output=embed",
+    "heroImage": "",
+    "aboutImage": ""
+  },
+  "booksyEmbedCode": "",
+  "services": [
+    {
+      "cat": "paznokcie",
+      "icon": "💅",
+      "title": "Manicure damski/męski",
+      "desc": "",
+      "price": "90,00 zł",
+      "duration": "50min",
+      "image": ""
+    },
+    {
+      "cat": "paznokcie",
+      "icon": "💅",
+      "title": "Manicure hybrydowy (baza)",
+      "desc": "",
+      "price": "130,00 zł",
+      "duration": "1g 15min",
+      "image": ""
+    },
+    {
+      "cat": "paznokcie",
+      "icon": "💅",
+      "title": "Manicure hybrydowy (kolor)",
+      "desc": "",
+      "price": "140,00 zł",
+      "duration": "1g 30min",
+      "image": ""
+    },
+    {
+      "cat": "paznokcie",
+      "icon": "💅",
+      "title": "Manicure hybrydowy (french)",
+      "desc": "",
+      "price": "150,00 zł",
+      "duration": "1g 40min",
+      "image": ""
+    },
+    {
+      "cat": "paznokcie",
+      "icon": "💅",
+      "title": "Manicure hybrydowy z usunięciem poprz. (baza)",
+      "desc": "",
+      "price": "150,00 zł",
+      "duration": "1g 40min",
+      "image": ""
+    },
+    {
+      "cat": "paznokcie",
+      "icon": "💅",
+      "title": "Manicure hybrydowy z usunięciem poprz. (kolor)",
+      "desc": "",
+      "price": "160,00 zł",
+      "duration": "1g 40min",
+      "image": ""
+    },
+    {
+      "cat": "paznokcie",
+      "icon": "💅",
+      "title": "Manicure hybrydowy z usunięciem poprz. (french)",
+      "desc": "",
+      "price": "170,00 zł",
+      "duration": "1g 45min",
+      "image": ""
+    },
+    {
+      "cat": "paznokcie",
+      "icon": "💎",
+      "title": "Wzmocnienie naturalnej płytki żelem",
+      "desc": "",
+      "price": "160,00 zł",
+      "duration": "1g 40min",
+      "image": ""
+    },
+    {
+      "cat": "paznokcie",
+      "icon": "✨",
+      "title": "Zdobienia",
+      "desc": "od 2,00 zł (np. manicure francuski - 20 zł)",
+      "price": "2,00 zł+",
+      "duration": "15min",
+      "image": ""
+    },
+    {
+      "cat": "paznokcie",
+      "icon": "🧴",
+      "title": "Usunięcie hybrydy",
+      "desc": "Zdjęcie hybrydy + piłowanie",
+      "price": "30,00 zł",
+      "duration": "30min",
+      "image": ""
+    },
+    {
+      "cat": "paznokcie",
+      "icon": "🔧",
+      "title": "Rekonstrukcja paznokcia",
+      "desc": "",
+      "price": "20,00 zł",
+      "duration": "30min",
+      "image": ""
+    },
+    {
+      "cat": "paznokcie",
+      "icon": "🌸",
+      "title": "Przedłużanie paznokci (długość 1-3)",
+      "desc": "",
+      "price": "190,00 zł",
+      "duration": "2g 20min",
+      "image": ""
+    },
+    {
+      "cat": "paznokcie",
+      "icon": "🌸",
+      "title": "Przedłużanie paznokci żelem (długość 3+)",
+      "desc": "",
+      "price": "220,00 zł",
+      "duration": "3g",
+      "image": ""
+    },
+    {
+      "cat": "paznokcie",
+      "icon": "🌸",
+      "title": "Uzupełnienie żelowe",
+      "desc": "",
+      "price": "170,00 zł",
+      "duration": "1g 50min",
+      "image": ""
+    },
+    {
+      "cat": "paznokcie",
+      "icon": "🌸",
+      "title": "Uzupełnienie żelowe (French)",
+      "desc": "",
+      "price": "190,00 zł",
+      "duration": "1g 50min",
+      "image": ""
+    },
+    {
+      "cat": "paznokcie",
+      "icon": "🧴",
+      "title": "Usunięcie żelu/akrylożelu",
+      "desc": "Zdjęcie żel/akrylożel + piłowanie",
+      "price": "45,00 zł",
+      "duration": "1g",
+      "image": ""
+    },
+    {
+      "cat": "pedicure",
+      "icon": "🦶",
+      "title": "Pedicure bez malowania",
+      "desc": "",
+      "price": "90,00 zł",
+      "duration": "1g 15min",
+      "image": ""
+    },
+    {
+      "cat": "pedicure",
+      "icon": "🦶",
+      "title": "Lakierowanie hybrydowe",
+      "desc": "",
+      "price": "130,00 zł",
+      "duration": "1g 15min",
+      "image": ""
+    },
+    {
+      "cat": "pedicure",
+      "icon": "🦶",
+      "title": "Pedicure hybrydowy",
+      "desc": "",
+      "price": "150,00 zł",
+      "duration": "1g 45min",
+      "image": ""
+    },
+    {
+      "cat": "pedicure",
+      "icon": "🦶",
+      "title": "Pedicure hybrydowy z usunięciem poprzedniego",
+      "desc": "",
+      "price": "160,00 zł",
+      "duration": "1g 45min",
+      "image": ""
+    },
+    {
+      "cat": "pedicure",
+      "icon": "🧴",
+      "title": "Usunięcie hybrydy (usunięcie hybrydy + opiłowanie)",
+      "desc": "",
+      "price": "40,00 zł",
+      "duration": "45min",
+      "image": ""
+    },
+    {
+      "cat": "pedicure",
+      "icon": "🧴",
+      "title": "Usunięcie hybrydy (usunięcie + opiłowanie + skórki)",
+      "desc": "",
+      "price": "60,00 zł",
+      "duration": "55min",
+      "image": ""
+    },
+    {
+      "cat": "brwi",
+      "icon": "🖌️",
+      "title": "Regulacja brwi",
+      "desc": "",
+      "price": "30,00 zł",
+      "duration": "15min",
+      "image": ""
+    },
+    {
+      "cat": "brwi",
+      "icon": "🎨",
+      "title": "Stylizacja brwi farbą",
+      "desc": "",
+      "price": "90,00 zł",
+      "duration": "30min",
+      "image": ""
+    },
+    {
+      "cat": "brwi",
+      "icon": "🎨",
+      "title": "Henna pudrowa",
+      "desc": "",
+      "price": "90,00 zł",
+      "duration": "1g",
+      "image": ""
+    },
+    {
+      "cat": "brwi",
+      "icon": "🌿",
+      "title": "Laminacja brwi z koloryzacją",
+      "desc": "",
+      "price": "120,00 zł",
+      "duration": "1g",
+      "image": ""
+    },
+    {
+      "cat": "brwi",
+      "icon": "✂️",
+      "title": "Korekta brwi/ust",
+      "desc": "Korekta przeprowadzana nie wcześniej niż 3 tygodnie, nie później niż 6",
+      "price": "250,00 zł",
+      "duration": "1g 45min",
+      "image": ""
+    },
+    {
+      "cat": "rzesy",
+      "icon": "👁️",
+      "title": "Laminacja rzęs z koloryzacją",
+      "desc": "",
+      "price": "130,00 zł",
+      "duration": "1g 10min",
+      "image": ""
+    },
+    {
+      "cat": "pm",
+      "icon": "💫",
+      "title": "Makijaż permanentny brwi",
+      "desc": "",
+      "price": "900,00 zł",
+      "duration": "2g",
+      "image": ""
+    },
+    {
+      "cat": "pm",
+      "icon": "💫",
+      "title": "Makijaż permanentny ust",
+      "desc": "",
+      "price": "900,00 zł",
+      "duration": "2g",
+      "image": ""
+    },
+    {
+      "cat": "pm",
+      "icon": "➖",
+      "title": "Kreska w linii rzęs",
+      "desc": "",
+      "price": "400,00 zł",
+      "duration": "1g",
+      "image": ""
+    },
+    {
+      "cat": "pm",
+      "icon": "➖",
+      "title": "Korekta kresek w linii rzęs",
+      "desc": "",
+      "price": "100,00 zł",
+      "duration": "45min",
+      "image": ""
+    },
+    {
+      "cat": "pm",
+      "icon": "🔴",
+      "title": "Laserowe usuwanie makijażu permanentnego",
+      "desc": "",
+      "price": "200,00 zł",
+      "duration": "30min",
+      "image": ""
+    },
+    {
+      "cat": "pm",
+      "icon": "🔴",
+      "title": "Remover starego makijażu permanentnego",
+      "desc": "",
+      "price": "150,00 zł",
+      "duration": "1g",
+      "image": ""
+    },
+    {
+      "cat": "pm",
+      "icon": "🔁",
+      "title": "Korekta do roku",
+      "desc": "",
+      "price": "250,00 zł+",
+      "duration": "1g 30min",
+      "image": ""
+    }
+  ],
+  "reviews": [
+    {
+      "name": "Anna K.",
+      "stars": 5,
+      "text": "Świetny salon, bardzo profesjonalne podejście. Manicure trzyma się już 3 tygodnie!",
+      "service": "Manicure hybrydowy"
+    },
+    {
+      "name": "Magda W.",
+      "stars": 5,
+      "text": "Laminacja brwi zmieniła całą moją twarz. Efekt trwał ponad 6 tygodni!",
+      "service": "Laminacja brwi"
+    },
+    {
+      "name": "Karolina P.",
+      "stars": 5,
+      "text": "Bardzo miła obsługa, czysto i estetycznie. Zdecydowanie polecam każdej kobiecie.",
+      "service": "Henna brwi"
+    },
+    {
+      "name": "Julia S.",
+      "stars": 5,
+      "text": "Rezerwacja online zajęła dosłownie 2 minuty. Wszystko punktualnie i profesjonalnie.",
+      "service": "Manicure żelowy"
+    }
+  ],
+  "portfolio": [
+    {
+      "cat": "manicure",
+      "title": "Manicure hybrydowy #1",
+      "image": ""
+    },
+    {
+      "cat": "manicure",
+      "title": "Manicure żelowy #2",
+      "image": ""
+    },
+    {
+      "cat": "brwi",
+      "title": "Laminacja brwi #1",
+      "image": ""
+    },
+    {
+      "cat": "manicure",
+      "title": "Przedłużanie #3",
+      "image": ""
+    },
+    {
+      "cat": "brwi",
+      "title": "Henna brwi #2",
+      "image": ""
+    },
+    {
+      "cat": "manicure",
+      "title": "Manicure klasyczny #4",
+      "image": ""
+    },
+    {
+      "cat": "brwi",
+      "title": "Regulacja brwi #3",
+      "image": ""
+    },
+    {
+      "cat": "manicure",
+      "title": "Nail art #5",
+      "image": ""
+    },
+    {
+      "cat": "brwi",
+      "title": "Makijaż permanentny #4",
+      "image": ""
+    }
+  ],
+  "team": [
+    {
+      "name": "Kateryna",
+      "role": "Stylistka paznokci",
+      "image": ""
+    },
+    {
+      "name": "Marina",
+      "role": "Stylistka brwi",
+      "image": ""
+    },
+    {
+      "name": "Kristina",
+      "role": "Stylistka paznokci",
+      "image": ""
+    }
+  ]
+}
